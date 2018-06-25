@@ -1,0 +1,30 @@
+{
+  "name": "webpackLearn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "node_modules/.bin/webpack app/index.js",
+    "build": "webpack --env production",
+    "start": "webpack-dev-server --env development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruthQi/webpackLearn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruthQi/webpackLearn/issues"
+  },
+  "homepage": "https://github.com/ruthQi/webpackLearn#readme"
+}
