@@ -5,7 +5,12 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "css-loader": "^0.28.11",
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.21.0",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
@@ -14,7 +19,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "node_modules/.bin/webpack app/index.js",
     "build": "webpack --env production",
-    "start": "webpack-dev-server --env development"
+    "start": "webpack-dev-server --env development",
+    "lintjs": "eslint app/ webpack.*.js --cache --fix"
   },
   "repository": {
     "type": "git",
