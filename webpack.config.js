@@ -17,6 +17,11 @@ module.exports = {
       host:'localhost',
       port:'80',
    },
+   performance:{
+      hints: 'warning',
+      maxEntrypointSize: '100000',//bytes(编译之后的app.js)
+      maxAssetSize: '450000'//bytes(图片文件等的大小)
+   },
    entry: {
       app: PATHS.app,//app/index.js
    },
