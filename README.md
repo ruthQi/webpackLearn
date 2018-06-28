@@ -103,4 +103,68 @@ loader讲解：
 
 #============================================================
 文件压缩：
-#自动检测文价大小：
+#自动检测文价大小：performance
+performance:{//js或css文件超过指定的大小时会给出warning警告
+   hints: 'warning',
+   maxEntrypointSize: 100000,//bytes(编译之后的app.js)
+   maxAssetSize: 450000//bytes(图片文件等的大小)
+},
+#文件压缩插件：
+#uglifyjs-webpack-plugin：可以压缩ES6,只在正式环境压缩
+#webpack-parallel-uglify-plugin:  只在正式环境压缩 , uglifyJS不支持ES6,压缩报错(使用babel转化之后，在进行压缩，成功)；uglifyES支持ES6压缩
+new WebpackUglifyPlugin({
+   uglifyJS: {
+      output: {
+         comments: false
+      },
+      compress: {
+         warnings: false
+      }
+   }
+})
+
+#使用babel把ES6转化为ES5
+#npm install babel-core babel-cli babel-loader babel-preset-env --save-dev;
+#创建.babelrc文件，配置文件；
+#在webpack.config.js中配置babel,使用babel-loader编译文件
+use: [
+   {loader: 'babel-loader'},
+   {loader: 'eslint-loader'}
+];
+#先进行检测，再进行转换
+
+#babili-webpack-plugin这种方式压缩(添加此压缩140KB->139KB)
+
+#=============================================
+#sourcemap:定位js的source与状态，如果调试，可以添加上sourcemap(做调试时可用于下断点)
+#devtool:此选项控制是否生成，以及如何生成 source map。
+
+#使用devtool:'source-map';时，
+#压缩需要添加：
+new WebpackUglifyPlugin({
+   sourceMap: true
+}),
+#否则报错
+
+#===================================================
+分离打包项目代码：
+#splitChunks:分离组件打包，生成[name]命名的文件，要在入口js文件之前引入（4.0之后使用splitChunks，废弃了CommonsChunkPlugin）
+#分成2个文件打包，比打包成一个文件要小
+optimization: {
+   splitChunks:{
+      cacheGroups: {
+         // commons: {
+         //   name: 'commons',
+         //   chunks: 'initial',
+         //   minChunks: 2
+         // }
+         commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+         }
+         }
+   }
+},
+
+#==============================================

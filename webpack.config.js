@@ -1,6 +1,11 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackUglifyPlugin = require('webpack-parallel-uglify-plugin')//require('uglifyjs-webpack-plugin');
+//babili压缩
+const BabiliPlugin = require('babili-webpack-plugin');
+
+const webpack = require('webpack');
 
 const PATHS = {
    app: path.join(__dirname, 'app'),//__dirname根目录
@@ -17,31 +22,52 @@ module.exports = {
       host:'localhost',
       port:'80',
    },
-   performance:{
+   devtool:'source-map',
+   performance:{//js或css文件超过指定的大小时会给出warning警告
       hints: 'warning',
-      maxEntrypointSize: '100000',//bytes(编译之后的app.js)
-      maxAssetSize: '450000'//bytes(图片文件等的大小)
+      maxEntrypointSize: 500000,//bytes(编译之后的app.js)
+      maxAssetSize: 450000//bytes(图片文件等的大小)
    },
    entry: {
       app: PATHS.app,//app/index.js
    },
    output: {
       path: PATHS.build,
-      filename: '[name].js',//[name]对应entry对象的key
+      filename: '[name].js'//[name]对应entry对象的key
+   },
+   optimization: {
+      splitChunks:{
+         cacheGroups: {
+            // commons: {
+            //   name: 'commons',
+            //   chunks: 'initial',
+            //   minChunks: 2
+            // }
+            commons: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all'
+            }
+          }
+      }
    },
    module:{
       rules:[
          {
             test: /\.js$/,
             enforce:'pre',
-            loader: 'eslint-loader',
-            options: {
-               emitWarning: true,
-            }
+            exclude: /node_modules/,
+            //loader: 'babel-loader',
+            use: [
+               {loader: 'babel-loader'},
+               {loader: 'eslint-loader'}
+            ],
+            // options: {
+            //    emitWarning: true,
+            // }
          },
          {
             test: /\.css$/,
-            exclude: /node_modules/,
             use: plugin.extract({
                use: {
                   loader: 'css-loader',
@@ -64,9 +90,26 @@ module.exports = {
       ]
    },
    plugins: [
+      //new BabiliPlugin(),//好像不能使用sourceMap(devtool和babili一起使用报错)
       new htmlWebpackPlugin({
          title:'Webpack demo',
       }),
-      plugin
+      plugin,
+      new WebpackUglifyPlugin({//uglifyjs-webpack-plugin压缩
+         sourceMap: true
+      }),
+      // new WebpackUglifyPlugin({//webpack-parallel-uglify-plugin
+      //    sourceMap: true,
+      //    uglifyJS: {
+      //       output: {
+      //          comments: false
+      //       },
+      //       compress: {
+      //          warnings: false
+      //       }
+      //    }
+      // }),
+
+      
    ],
 };

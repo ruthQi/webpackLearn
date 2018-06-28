@@ -5,15 +5,22 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babili-webpack-plugin": "^0.1.2",
     "css-loader": "^0.28.11",
     "eslint": "^5.0.1",
     "eslint-loader": "^2.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "react": "^16.4.1",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-parallel-uglify-plugin": "^1.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
