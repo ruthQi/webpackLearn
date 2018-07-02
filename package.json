@@ -27,7 +27,8 @@
     "webpack": "node_modules/.bin/webpack app/index.js",
     "build": "webpack --env production",
     "start": "webpack-dev-server --env development",
-    "lintjs": "eslint app/ webpack.*.js --cache --fix"
+    "lintjs": "eslint app/ webpack.*.js --cache --fix",
+    "stats":"webpack --env production --profile --json > stats.json"
   },
   "repository": {
     "type": "git",

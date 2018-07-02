@@ -168,3 +168,13 @@ optimization: {
 },
 
 #==============================================
+可视化图表进行统计分析打包过程
+#查阅资料网址：http://blog.parryqiu.com/2017/06/16/webpack2-Statistics/
+
+#使用命令webpack --env production --profile --json > stats.json生成stats.json文件，然后上传到对应的分析网址
+#网址1.http://webpack.github.io/analyse/
+#网址2.https://alexkuz.github.io/webpack-chart/
+#网址3.https://alexkuz.github.io/stellar-webpack/
+
+#=================================================
+多页面编译
