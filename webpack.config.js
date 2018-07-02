@@ -2,6 +2,7 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackUglifyPlugin = require('webpack-parallel-uglify-plugin')//require('uglifyjs-webpack-plugin');
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
 //babili压缩
 const BabiliPlugin = require('babili-webpack-plugin');
 
@@ -21,6 +22,7 @@ module.exports = {
    devServer:{
       host:'localhost',
       port:'80',
+      hot: true,//--hot
    },
    devtool:'source-map',
    performance:{//js或css文件超过指定的大小时会给出warning警告
@@ -29,7 +31,7 @@ module.exports = {
       maxAssetSize: 450000//bytes(图片文件等的大小)
    },
    entry: {
-      app: PATHS.app,//app/index.js
+      app: './app/index.js'//PATHS.app,//app/index.js
    },
    output: {
       path: PATHS.build,
@@ -110,6 +112,8 @@ module.exports = {
       //    }
       // }),
 
-      
+      //--hot
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
    ],
 };

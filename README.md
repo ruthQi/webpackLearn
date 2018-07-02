@@ -178,3 +178,13 @@ optimization: {
 
 #=================================================
 多页面编译
+
+
+#===============================================
+HRM:页面局部刷新
+#方式1：webpack-dev-server --hot
+
+#方式2：
+   #webpack-dev-server
+   #devServer中配置：hot: true
+   #plugin中配置new webpack.HotModuleReplacementPlugin()
