@@ -188,3 +188,5 @@ HRM:页面局部刷新
    #webpack-dev-server
    #devServer中配置：hot: true
    #plugin中配置new webpack.HotModuleReplacementPlugin()
+
+#bable-loader导致HMR失败,因为WebpackUglifyPlugin压缩，需要babel-loader,否则报错
