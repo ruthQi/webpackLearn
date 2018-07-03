@@ -30,7 +30,8 @@
     "start": "webpack-dev-server --env development",
     "lintjs": "eslint app/ webpack.*.js --cache --fix",
     "stats": "webpack --env production --profile --json > stats.json",
-    "hmr": "webpack-dev-server --mode development"
+    "hmr": "webpack-dev-server --mode development",
+    "dev": "webpack"
   },
   "repository": {
     "type": "git",

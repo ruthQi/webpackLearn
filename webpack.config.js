@@ -1,7 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackUglifyPlugin = require('webpack-parallel-uglify-plugin')//require('uglifyjs-webpack-plugin');
+const WebpackUglifyPlugin = require('webpack-parallel-uglify-plugin');//require('uglifyjs-webpack-plugin');
 //const CleanWebpackPlugin = require('clean-webpack-plugin');
 //babili压缩
 const BabiliPlugin = require('babili-webpack-plugin');
@@ -97,20 +97,20 @@ module.exports = {
          title:'Webpack demo',
       }),
       plugin,
-      new WebpackUglifyPlugin({//uglifyjs-webpack-plugin压缩
-         sourceMap: true
-      }),
-      // new WebpackUglifyPlugin({//webpack-parallel-uglify-plugin
-      //    sourceMap: true,
-      //    uglifyJS: {
-      //       output: {
-      //          comments: false
-      //       },
-      //       compress: {
-      //          warnings: false
-      //       }
-      //    }
+      // new WebpackUglifyPlugin({//uglifyjs-webpack-plugin压缩
+      //    sourceMap: true
       // }),
+      new WebpackUglifyPlugin({//webpack-parallel-uglify-plugin
+         sourceMap: true,
+         uglifyJS: {
+            output: {
+               comments: false
+            },
+            compress: {
+               warnings: false
+            }
+         }
+      }),
 
       //--hot
       new webpack.NamedModulesPlugin(),
