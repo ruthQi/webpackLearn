@@ -181,7 +181,7 @@ optimization: {
 
 
 #===============================================
-HRM:页面局部刷新
+HMR:页面局部刷新
 #方式1：webpack-dev-server --hot
 
 #方式2：
@@ -190,3 +190,4 @@ HRM:页面局部刷新
    #plugin中配置new webpack.HotModuleReplacementPlugin()
 
 #bable-loader导致HMR失败,因为WebpackUglifyPlugin压缩，需要babel-loader,否则报错
+#添加{"modules": false}，可以解决HMR不起作用的问题
