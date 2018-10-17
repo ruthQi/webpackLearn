@@ -1,4 +1,4 @@
-# webpackLearn
+np# webpackLearn
 
 #第一步：npm init -y 初始化工程,创建package.json文件；（rm -rf ./node_modules删除安装包）
 #第二步：npm install webpack --save-dev 安装webpack;npm install webpack-cli --save-dev 安装webpack-cli
@@ -22,6 +22,8 @@ webpack打包生成html过程：
 #=======================================================================
 自动刷新：
 #使用webpack-dev-server插件（WDS），"webpack-dev-server --env development"使用此命令进行打包，访问localhost:8080，可以实时看到变化
+#使用webpack-dev-server启动时，并不会执行output生成build文件夹
+#访问http://localhost:8080/webpack-dev-server可以看到server下的生成文件
 
 #=========================================================================
 根据devServer配置服务器端口和host
